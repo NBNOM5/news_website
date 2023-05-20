@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/article.css' %}">
+ <main>
+     <section class="top-news">
+
+          {% most_comments %}
+         <div class="article-layout">
+             <div class="article-layout__header">
+                 <div class="header-time"><span class="time-ui">{{ maqola.created_at|date:"d/m/Y f" }}</span></div>
+                 <div class="content-views"><span class="">{{ maqola.see }}</span></div>
+                 <div class="share-news">
+                     <a class="share-news__label" href="{% url 'article:share' maqola.id %}">Улашинг</a>
+                     
+                 </div>
+             </div>
+             <div class="article-layout__content">
+                 <h1>{{ maqola.title }}</h1>
+                 <h4>{{ maqola.subtitle }}</h4>
+                 <div class="content-img">
+                     <img src="{{ maqola.photo.url }}" alt="">
+                     <div class="main-img__caption">{{ maqola.photo }}</div>
+                 </div>
+                 <p dir="auto">{{ maqola.body }}</p>
+                 
+                 <div class="article-layout__bottom">
+                     <ul>
+                        {% for tag in maqola.tags.all %}
+                         <li class="bottom-tag"><a
+                                 href="{% url 'article:post_list_by_tag' tag.slug %}">#{{ tag.name }}</a></li>
+                        {% endfor %}
+                     </ul>
+                    
+                 </div>
+             </div>
+             <div class="article-layout__comment">
+                 <div class="comment-head"><span>4 comments</span>test</div>
+                 <div class="comment-form">
+                     <div class="comment-avatar">J</div>
+                     <form method='post' id="comment-form" onsubmit="myFunction(e)">
+                        {% csrf_token %}
+                         <input required id="id_name" type="text" name="name" placeholder="name" autocomplete="username"
+                            >
+
+                         <input required id="id_email" type="text" name="email" placeholder="email" autocomplete="username" >
+                         <textarea name="body" id="id_body" rows="2" placeholder="comment"></textarea>
+
+                         <input type="submit" value="send">
+                     </form>
+                 </div>
+                 <div class="comments-body">
+                     <!-- <div class="comment-ordering">
+                         <label class="ordering__new">
+                             <input type="radio" checked="checked" name="radio" onclick="console.log(this)">
+                             <span>NEW</span>
+                             <span class="ordering__checkmark"></span>
+                         </label>
+                         <label class="ordering__older">
+                             <input type="radio" name="radio">
+                             <span>OLDER</span>
+                             <span class="ordering__checkmark"></span>
+                         </label>
+                     </div> -->
+                     <div class="comments-list">
+                        {% for comment in comments %}
+                         <div class="comment-container" itemid="1">
+                             <div class="comment-avatar">{{ comment.name|slice:"1" }}</div>
+                             <div class="comment-info">
+                                 <div class="comment-info-head">
+                                     <p class="comment-username">{{ comment.name }}</p>
+                                     <p class="comment-time time-ui">{{ comment.created_at|date:"d/m/Y |f" }}</p>
+                                 </div>
+                                 <p class="comment-context">{{ comment.body }}</p>
+                             </div>
+                         </div>
+                        {% endfor %}
+                     </div>
+                 </div>
+             </div>
+
+         </div>
+         <script>
+             function myFunction(e) {
+                 e.preventDefault();
+             }
+         </script>
+         <div class="article__right">
+             {% lastest_postes %}
+             {% most_view %}
+         </div>
+     </section>
+     <section class="bottom-news">
+         <div class="tag-news">
+             <div class="tags-news__head">
+                 <a class="aylana-label" href="#"><span>O'xshash maqolalar</span></a>
+             </div>
+             <div class="tags-news__grid">
+                {% for post in posts %}
+                 <a href="{{ post.get_absolute_url }}">
+                     <img src="{{ post.photo.url }}" alt="">
+                     <div class="tags-news__content">
+                         <div><span class="time-ui">{{ post.created_at|date:"d/m/Y f" }}</span></div>
+                         <p>{{ post.title }}</p>
+                     </div>
+                 </a>
+                {% endfor %}
+             </div>
+         </div>
+         <div class="biznes-news">
+             <div class="biznes-news__head">
+                 <a class="aylana-label" href="#"><span>Biznes</span></a>
+             </div>
+             <div class="biznes-carousel">
+                 <div class="carousel" data-flickity='{ "groupCells": 4 }'>
+
+                     <div class="carousel-cell">
+                         <a href="">
+                             <div class="carousel-img">
+                                 <img src="{% static 'images/b2 (1).jpg' %}" alt="" srcset="">
+                             </div>
+                             <div class="carousel-content">
+                                 Базалт геосеткаси ва базалт иссиқлик сақловчи плиталари билан янада мустаҳкам
+                             </div>
+                         </a>
+                     </div>
+                     <div class="carousel-cell">
+                         <a href="">
+                             <div class="carousel-img">
+                                 <img src="{% static 'images/b2 (2).jpg' %}" alt="" srcset="">
+                             </div>
+                             <div class="carousel-content">
+                                 Mobiuz юртимиздаги офислари тармоғини янгилашда давом этмоқда
+                             </div>
+                         </a>
+                     </div>
+                     <div class="carousel-cell">
+                         <a href="">
+                             <div class="carousel-img">
+                                 <img src="{% static 'images/b2 (3).jpg' %}" alt="" srcset="">
+                             </div>
+                             <div class="carousel-content">
+                                 Тошкентда уч қитъани бирлаштирган чарм-пойабзал кўргазмаси иш бошлади
+                             </div>
+                         </a>
+                     </div>
+                     <div class="carousel-cell">
+                         <a href="">
+                             <div class="carousel-img">
+                                 <img src="{% static 'images/b2 (4).jpg' %}" alt="" srcset="">
+                             </div>
+                             <div class="carousel-content">
+                                 Tenge Business: Бизнесингизни онлайн бошқаринг
+                             </div>
+                         </a>
+                     </div>
+                     <div class="carousel-cell">
+                         <a href="">
+                             <div class="carousel-img">
+                                 <img src="{% static 'images/b2 (3).jpg' %}" alt="" srcset="">
+                             </div>
+                             <div class="carousel-content">
+                                 Базалт геосеткаси ва базалт иссиқлик сақловчи плиталари билан янада мустаҳкам
+                             </div>
+                         </a>
+                     </div>
+                     <div class="carousel-cell">
+                         <a href="">
+                             <div class="carousel-img">
+                                 <img src="./source/KmLDjjx7UpPG3D6HNfcfHQmenryFBxgA_medium.jpg" alt="" srcset="">
+                             </div>
+                             <div class="carousel-content">
+                                 Базалт геосеткаси ва базалт иссиқлик сақловчи плиталари билан янада мустаҳкам
+                             </div>
+                         </a>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+ </main>
+{% endblock content %}

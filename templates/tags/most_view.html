@@ -1,0 +1,11 @@
+<div class="right__most_read">
+    <a class="aylana-label" href="#"><span>Eng ko'p o'qilgan maqolalar</span></a>
+    <ul>
+        {% for post in posts %}
+        <li class="right__news_lenta"><a href="{{ post.get_absolute_url }}">
+                <div><span class="time-ui">{{ post.created_at|date:"d/m/Y | f" }}</span></div>
+                <p>{{ post.title }}</p>
+            </a></li>
+        {% endfor %}
+    </ul>
+</div>

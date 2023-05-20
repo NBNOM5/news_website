@@ -1,0 +1,23 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/paginator.css' %}">
+
+
+
+{% if page.has_previous %}
+
+    <a class="paginator__prev" href="?page={{page.previous_page_number}}"></a>
+
+{% endif %}
+
+    <div class="paginator__num">{{ page.number }} - sahifa</div>
+
+{% if page.has_next %}
+
+    <a class="paginator__next" href="?page={{ page.next_page_number }}"></a>
+
+{% endif %}
+
+
+
+
+

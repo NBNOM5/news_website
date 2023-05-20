@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Kun.UZ</title>
+
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+        <link rel="stylesheet" href="{% static 'css/carousel.css' %}">
+
+        <link rel="stylesheet" href="{% static 'css/top-button.css' %}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    </head>
+    <body>
+        <main>
+            <header>
+                       <nav>
+                           <div>
+                               <a class="nav__logo" href="{% url 'article:list' %}"><img src="{% static 'images/kun-uz-logo.svg' %}"alt="kunuz logo"></a>
+                               <ul class="nav__ul">
+                                    {% for category in categories %}
+                                        <li><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
+                                    {% endfor %}
+                               </ul>
+                           </div>
+                       </nav>
+                       <nav>
+                           <div class="nav__countries">
+                               <p class="regions">Hududlar</p>
+                               <ul class="nav__ul">
+                                   <li><a href="">Тошкент ш.</a></li>
+                                   <li><a href="">Наманган</a></li>
+                                   <li><a href="">Фарғона</a></li>
+                                   <li><a href="">Андижон</a></li>
+                                   <li><a href="">Самарқанд</a></li>
+                                   <li><a href="">Бухоро</a></li>
+                                   <li><a href="">Хоразм</a></li>
+                                   <li><a href="">Сурхондарё</a></li>
+                                   <li><a href="">Қашқадарё</a></li>
+                                   <li><a href="">Жиззах</a></li>
+                                   <li><a href="">Сирдарё</a></li>
+                                   <li><a href="">Навоий</a></li>
+                               </ul>
+                           </div>
+                       </nav>
+            </header>
+        </main>
+
+        {% block content %}
+
+        {% endblock content %}
+
+        <div id="button"></div>
+        <footer>
+            <div class="footer-menu">
+               
+                <a href=""><img src="{% static 'images/icons/18plus-v2.svg' %}" alt=""></a>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-text">Ushbu sayt UITC Academiyasining Backend G-1 guruhining:<br>
+                     Ushbu sayt UITC Academiyasining Backend G-1 guruhining <br>
+                     O'quvchilari tomonidan 1-04-2023 / 20-04-2023 <br>vaqt oralig'ida
+                     ishlab chiqildi.
+                        <br><br>All rights reserved © 2023
+                     </div>
+                     <div class="footer-text_2">
+                         <ul>
+                             <li>👨‍🎓Xatamjonov Ulug'bek(mentor)</li>
+                             <li>👩Hakimova Oydina</li>
+                             <li>😎Ismoilov Akramjon</li>
+                             <li>👨‍💻Ikromov Javohir</li>
+                             <li>😴Kamolov Abubakr</li>
+                         </ul>
+                <ul class="social-items">
+                    <li><a href=""><img src="{% static 'css/icons/social-youtube.svg' %}" alt=""></a></li>
+                    <li><a href="https://t.me/YakubjanovNurmuhammad"><img src="{% static 'css/icons/social-telegram.svg' %}"
+                                alt=""></a></li>
+                    <li><a href=""><img src="{% static 'css/icons/social-facebook.svg' %}" alt=""></a></li>
+                    <li><a href=""><img src="{% static 'css/icons/social-twitter.svg' %}" alt=""></a></li>
+                    <li><a href=""><img src="{% static 'css/icons/social-instagram.svg' %}" alt=""></a></li>
+                    <li><a class="t" href=""><img src="{% static 'css/icons/social-rss.svg' %}" alt=""></a></li>
+                </ul>
+            </div>
+        </footer>
+        <script src="{% static 'js/index.js' %}"></script>
+        
+    </body>
+</html>
+
+

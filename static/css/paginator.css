@@ -1,0 +1,73 @@
+.paginator{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    user-select: none;
+}
+
+.paginator__num{
+    color: var(--grey1);
+    transition: color .1s ease-out;
+}
+.paginator:hover .paginator__num{
+    color: var(--blue2);
+    transition: color .15s ease-out;
+}
+
+.paginator a,.paginator div{
+    margin: 0 10px;
+    -webkit-user-drag: none;
+}
+.paginator a{
+    box-sizing: border-box;
+    position: relative;
+    display: block;
+    width: 32px;
+    height: 32px;
+    border-radius: 100px;
+    transition: all .3s ease-out;
+}
+.paginator a:hover{
+    background-color: var(--grey2);
+    box-shadow: 1px 1px 2px var(--blue2);
+    transition: all .15s ease-out;
+}
+.paginator a:active{
+    opacity: 0.6;
+}
+
+.paginator a::after{
+    content: "";
+    display: block;
+    box-sizing: border-box;
+    position: absolute;
+    width: 13px;
+    height: 13px;
+    color: var(--grey1);
+    transition: all .15s ease;
+}
+.paginator .paginator__prev::after {
+    border-bottom: 2px solid;
+    border-left: 2px solid;
+    transform: rotate(45deg);
+    left: 37.5%;
+    top: 25%;
+}
+.paginator .paginator__next::after {
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+    transform: rotate(-45deg);
+    right: 37.5%;
+    top: 25%;
+}
+.paginator a:hover::after{
+    border-color: var(--blue2);
+}
+.paginator .paginator__prev:hover::after{
+    left: 27.5%;
+}
+.paginator .paginator__next:hover::after{
+    right: 27.5%;
+}
+

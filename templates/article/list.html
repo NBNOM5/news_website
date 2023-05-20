@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load blog_tags %}
+{% load static %}
+
+{% block content %}
+<main>
+    <section class="top-news">
+        <div class="top-news__center">
+            <a class="center-news__big" href="{{ most_new.get_absolute_url }}">
+                <img class="big-news__img" src="{{ most_new.photo.url }}" alt="">
+                <div class="big-news__content">
+                    <div><span class="time-ui">{{ most_new.created_at | date:"d/m/Y | f" }}</span></div>
+                    <p>{{ most_new.title }}</p>
+                    <p>{{ most_new.subtitle }}
+                    </p>
+                </div>
+            </a>
+
+            <div class="center-news__grid">
+                {% for maqola in last6_news %}
+                <a href="{{ maqola.get_absolute_url }}">
+                    {% if maqola.photo %}
+                    <img src="{{ maqola.photo.url }}" alt="">
+                    {% endif %}
+                    <div class="center-news__grid-content">
+                        <div><span class="time-ui">{{ maqola.created_at|date:"d/m/Y/ | f" }}</span></div>
+                        <p>{{ maqola.title }}</p>
+                    </div>
+                </a>
+                {% endfor %}
+
+            </div>
+        </div>  
+        {% most_comments %}
+
+    </section>
+
+    <section class="lower-part">
+        <div class="maqolalar-news">
+            <a class="aylana-label" href="#"><span>Maqolalar</span></a>
+            <div class="maqolalar-container">
+                {% for maqola in maqolalar %}
+                <a href="{{ maqola.get_absolute_url }}">
+                    <img src="{{ maqola.photo.url }}" alt="">
+                    <div class="maqolalar-container__content">
+                        <h5>{{ maqola.title }}</h5>
+                        <p>{{ maqola.body| slice:"360" }}</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            <div class="paginator">
+                {% include 'paginator.html' with page=maqolalar %}
+            </div>
+        </div>
+
+        <div class="biznes-news">
+            <div class="biznes-news__head">
+                <a class="aylana-label" href="#"><span>Biznes</span></a>
+            </div>
+            <div class="biznes-carousel">
+                <div class="carousel" data-flickity='{ "groupCells": 4 }'>
+
+                    <div class="carousel-cell">
+                        <a href="">
+                            <div class="carousel-img">
+                                <img src="{% static 'images/b2 (1).jpg' %}" alt="" srcset="">
+                            </div>
+                            <div class="carousel-content">
+                                Базалт геосеткаси ва базалт иссиқлик сақловчи плиталари билан янада мустаҳкам
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-cell">
+                        <a href="">
+                            <div class="carousel-img">
+                                <img src="{% static 'images/b2 (2).jpg' %}" alt="" srcset="">
+                            </div>
+                            <div class="carousel-content">
+                                Mobiuz юртимиздаги офислари тармоғини янгилашда давом этмоқда
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-cell">
+                        <a href="">
+                            <div class="carousel-img">
+                                <img src="{% static 'images/b2 (3).jpg' %}" alt="" srcset="">
+                            </div>
+                            <div class="carousel-content">
+                                Тошкентда уч қитъани бирлаштирган чарм-пойабзал кўргазмаси иш бошлади
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-cell">
+                        <a href="">
+                            <div class="carousel-img">
+                                <img src="{% static 'images/b2 (4).jpg' %}" alt="" srcset="">
+                            </div>
+                            <div class="carousel-content">
+                                Tenge Business: Бизнесингизни онлайн бошқаринг
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-cell">
+                        <a href="">
+                            <div class="carousel-img">
+                                <img src="{% static 'images/b2 (3).jpg' %}" alt="" srcset="">
+                            </div>
+                            <div class="carousel-content">
+                                Базалт геосеткаси ва базалт иссиқлик сақловчи плиталари билан янада мустаҳкам
+                            </div>
+                        </a>
+                    </div>
+                    <div class="carousel-cell">
+                        <a href="">
+                            <div class="carousel-img">
+                                <img src="{% static 'images/KmLDjjx7UpPG3D6HNfcfHQmenryFBxgA_medium.jpg' %}" alt=""
+                                    srcset="">
+                            </div>
+                            <div class="carousel-content">
+                                Базалт геосеткаси ва базалт иссиқлик сақловчи плиталари билан янада мустаҳкам
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="media-news">
+            <a class="aylana-label" href="#"><span>Media Yangilikllar</span></a>
+            <div class="media-container">
+                {% for post in videos %}
+                <a href="{{ post.get_absolute_url }}">
+                    <div class="media-img"><img src="{{ post.photo.url }}" alt=""></div>
+                    <div class="media-container__content">
+                        <div><span class="time-ui">{{ post.created_at|date:"d/m/Y | f" }}</span></div>
+                        <p>{{ post.title }}</p>
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </section>
+</main>
+
+{% endblock content %}

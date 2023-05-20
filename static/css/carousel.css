@@ -1,0 +1,45 @@
+.biznes-carousel {
+  position: relative;
+  height: 100%;
+}
+
+
+.carousel {
+    background: #F9FAFF;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: 400px;
+}
+.carousel-img{
+    height: 192px;
+    width: 308px;
+}
+.carousel-img img{
+    height: 192px;
+    width: 308px;
+    object-fit: cover;
+}
+.carousel-content{
+    display: flex;
+    align-items: center;
+    padding: 20px 20px 25px;
+    font-size: 16px;
+    line-height: 20px;
+    background-color: white;
+    height: calc(100% - 192px);
+    font-weight: 700;
+    transition: color .2s ease-out;
+}
+.carousel-cell {
+    width: 21.3888%;
+    height: 332px;
+    margin-right: 20px;
+    background: #F9FAFF;
+}
+.carousel-cell a:hover>.carousel-content{
+    text-decoration: none;
+    color: var(--blue2);
+    transition: color .2s ease-out;
+}

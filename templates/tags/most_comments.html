@@ -1,0 +1,19 @@
+<div class="top-news__aside article__aside">
+    <a class="aylana-label" href="#"><span>Eng ko'p muhokama qilinganlar</span></a>
+    <ul>
+        {% for comment in comments %}
+        <li class="last__news_lenta"><a href="{{ comment.get_absolute_url }}">
+                <div><span class="time-ui">{{ comment.created_at|date:"d/m/Y |f" }}</span></div>
+                <p>“Биз битта эл ва битта юртмиз!” &#8722; президент қорақалпоғистонликлар билан учрашди</p>
+            </a></li>
+        {% endfor %}
+</div>
+
+
+
+
+
+
+
+
+

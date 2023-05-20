@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<main>
+    <section class="lower-part">
+        <div class="maqolalar-news">
+            <a class="aylana-label" href="#"><span>{{ category_object }}ga doir maqolalar</span></a>
+            <div class="maqolalar-container">
+                {% for post in posts %}
+                    <a href=" {{ post.get_absolute_url }}">
+                        <img src="{{ post.photo.url }}" alt="">
+                        <div class="maqolalar-container__content">
+                            <h5>{{ post.title }}</h5>
+                            <p>{{ post.body | slice:"350" }}</p>
+                        </div>
+                    </a>
+                    {% endfor %}
+            </div>
+            <div class="paginator">
+                {% include "paginator.html" with page=posts %}
+            </div>
+        </div>
+
+   
+
+     
+
+    </section>
+</main>
+    
+
+{% endblock content %}

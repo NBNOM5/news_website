@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/share.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+</head>
+
+
+    <div class="content-container">
+        <div>
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.subtitle }}</p>
+        </div>
+        <div class="form-container">
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-25">
+                        <label for="id_name">Ismingiz</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" required id="id_name" name="id_name" placeholder="Ism..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="id_email">E-mail</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="email" required id="id_email" name="id_email" placeholder="Your e-mail..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="id_to">Friend e-mail</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="email" required id="id_to" name="id_to" placeholder="Friend e-mail..">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="id_comment">Maqolaga izoh</label>
+                    </div>
+                    <div class="col-75">
+                        <textarea id="id_comment" required name="id_comment" placeholder="Yozing.."
+                            style="height:200px"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <input type="submit" required value="Send">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
+
+
